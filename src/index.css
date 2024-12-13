@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  @apply bg-gray-100 text-gray-800 font-sans;
+}
+
+a {
+  @apply transition-colors duration-300;
+}
+
+button {
+  @apply px-4 py-2 rounded text-white bg-accent hover:bg-accent-hover transition-all;
+}
+
+/* Navbar-specific styles */
+nav {
+  height: 80px;
+}
+
+nav img {
+  max-height: 100%;
+  object-fit: contain;
+  max-width: 180px; /* Ajuste o tamanho máximo da logo */
+}
