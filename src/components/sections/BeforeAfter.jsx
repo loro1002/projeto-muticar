@@ -25,7 +25,7 @@ const BeforeAfter = () => {
       description: 'Restauração perfeita da pintura original'
     },
     {
-      before: '/public/martelihoantes.jpg',
+      before: '/martelihoantes.jpg',
       after: '/marteliho-depois.jpg',
       title: 'Martelinho de Ouro',
       description: 'Correção precisa de pequenos danos'
