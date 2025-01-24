@@ -13,34 +13,33 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-black text-white shadow-lg sticky top-0 z-50" style={{ height: '80px' }}>
-      <div className="container mx-auto px-4 flex justify-between items-center h-full">
+    <nav className="bg-black text-white shadow-lg sticky top-0 z-50 h-20">
+      <div className="container mx-auto px-4 flex justify-between items-center h-full max-w-6xl">
         {/* Logo */}
         <div className="flex items-center h-full">
-          <img 
+          <img
             src="/multcar-logo.png"
             alt="Mult Car Logo"
-            className="max-h-full object-contain"
-            style={{ maxWidth: '180px' }} // Ajuste para caber melhor
+            className="max-h-40 object-contain"
           />
         </div>
-
+        
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="text-white hover:text-accent transition-colors font-medium"
+              className="text-white hover:text-orange-500 transition-colors font-medium"
             >
               {item.name}
             </a>
           ))}
-          <button className="bg-accent text-white px-4 py-2 rounded hover:bg-accent-hover transition-all">
+          <button className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition-all">
             Fale Conosco
           </button>
         </div>
-
+        
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
@@ -52,7 +51,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
+      
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -60,9 +59,9 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-gray-800 text-white"
+            className="md:hidden bg-gray-900 text-white"
           >
-            <div className="px-4 pt-2 pb-4">
+            <div className="px-4 pt-2 pb-4 container max-w-6xl mx-auto">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -73,7 +72,7 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <button className="bg-accent w-full text-white py-2 mt-2 rounded hover:bg-accent-hover transition-all">
+              <button className="bg-orange-500 w-full text-white py-2 mt-2 rounded-md hover:bg-orange-600 transition-all">
                 Fale Conosco
               </button>
             </div>

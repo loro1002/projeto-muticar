@@ -1,118 +1,131 @@
 import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import Slider from 'react-slick'
 
 const BeforeAfter = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const sliderRef = useRef(null)
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  })
 
   const beforeAfterImages = [
     {
-      before: 'antes-1.jpg',
-      after: 'depois-1.jpg',
-      title: 'Recuperação Completa'
+      before: '/antes-1.jpg',
+      after: '/depois-1.jpg',
+      title: 'Recuperação Completa',
+      description: 'Transformação total da lataria'
     },
     {
-      before: '/images/before-after/2-before.jpg',
-      after: '/images/before-after/2-after.jpg',
-      title: 'Restauração Profissional'
+      before: '/pinturacompletaantes.jpg',
+      after: '/pinturacompletadepois.jpg',
+      title: 'Pintura Especializada',
+      description: 'Restauração perfeita da pintura original'
     },
     {
-      before: '/images/before-after/3-before.jpg',
-      after: '/images/before-after/3-after.jpg',
-      title: 'Pintura de Alta Qualidade'
+      before: '/public/martelihoantes.jpg',
+      after: '/marteliho-depois.jpg',
+      title: 'Martelinho de Ouro',
+      description: 'Correção precisa de pequenos danos'
     }
   ]
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    afterChange: (current) => setCurrentSlide(current),
-    nextArrow: <CustomNextArrow />,
-    prevArrow: <CustomPrevArrow />,
-  }
-
-  function CustomNextArrow(props) {
-    const { onClick } = props
-    return (
-      <button 
-        onClick={onClick}
-        className="absolute top-1/2 right-4 z-10 bg-white/50 rounded-full p-2 hover:bg-white/75 transition-all"
-      >
-        <FaChevronRight className="text-gray-800" />
-      </button>
+  const nextSlide = () => {
+    setCurrentSlide((prev) => 
+      (prev + 1) % beforeAfterImages.length
     )
   }
 
-  function CustomPrevArrow(props) {
-    const { onClick } = props
-    return (
-      <button 
-        onClick={onClick}
-        className="absolute top-1/2 left-4 z-10 bg-white/50 rounded-full p-2 hover:bg-white/75 transition-all"
-      >
-        <FaChevronLeft className="text-gray-800" />
-      </button>
+  const prevSlide = () => {
+    setCurrentSlide((prev) => 
+      prev === 0 ? beforeAfterImages.length - 1 : prev - 1
     )
   }
 
   return (
-    <section id="before-after" className="bg-gray-100 py-16">
-      <div className="container mx-auto px-4">
+    <section ref={ref} id="before-after" className="bg-gray-50 py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="container mx-auto px-4"
+      >
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            Galeria
+          <h2 className="text-4xl font-bold text-gray-800">
+            Galeria <span className="text-orange-500">Antes e Depois</span>
           </h2>
-          <p className="text-gray-600 mt-4 ">
-            Transformações que falam por si
+          <p className="text-gray-600 mt-4">
+            Veja as transformações impressionantes de nossos serviços
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Slider ref={sliderRef} {...settings}>
-            {beforeAfterImages.map((item, index) => (
-              <div key={index} className="px-4">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="grid md:grid-cols-2 gap-4"
-                >
-                  <div className="relative">
-                    <img 
-                      src={item.before} 
-                      alt="Antes" 
-                      className="w-full h-96 object-cover rounded-lg shadow-lg"
-                    />
-                    <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded">
-                      Antes
-                    </div>
-                  </div>
-                  <div className="relative">
-                    <img 
-                      src={item.after} 
-                      alt="Depois" 
-                      className="w-full h-96 object-cover rounded-lg shadow-lg"
-                    />
-                    <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded">
-                      Depois
-                    </div>
-                  </div>
-                </motion.div>
-                <div className="text-center mt-6">
-                  <h3 className="text-2xl font-semibold text-gray-800">
-                    {item.title}
-                  </h3>
-                </div>
+        <div className="relative max-w-4xl mx-auto">
+          {/* Slide Navigation */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 
+              bg-white/50 rounded-full p-2 hover:bg-white/75"
+          >
+            <FaChevronLeft className="text-gray-800" />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 
+              bg-white/50 rounded-full p-2 hover:bg-white/75"
+          >
+            <FaChevronRight className="text-gray-800" />
+          </button>
+
+          {/* Current Slide */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <motion.div 
+              key={`before-${currentSlide}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <img
+                src={beforeAfterImages[currentSlide].before}
+                alt="Antes"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+              <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded">
+                Antes
               </div>
-            ))}
-          </Slider>
+            </motion.div>
+
+            <motion.div 
+              key={`after-${currentSlide}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              <img
+                src={beforeAfterImages[currentSlide].after}
+                alt="Depois"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+              <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded">
+                Depois
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Slide Description */}
+          <div className="text-center mt-6">
+            <h3 className="text-2xl font-semibold text-gray-800">
+              {beforeAfterImages[currentSlide].title}
+            </h3>
+            <p className="text-gray-600 mt-2">
+              {beforeAfterImages[currentSlide].description}
+            </p>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

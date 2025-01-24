@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer'
 import WhatsappButton from './components/layout/WhatsappButton'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
+import Gallery from './components/sections/Gallery'
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Hero />
           <Services />
           <BeforeAfter />
+          <Gallery />
           <Contact />
         </motion.main>
       </AnimatePresence>
