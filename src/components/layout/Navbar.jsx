@@ -17,13 +17,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center h-full max-w-6xl">
         {/* Logo */}
         <div className="flex items-center h-full">
-          <img
-            src="/multcar-logo.png"
-            alt="Mult Car Logo"
-            className="max-h-40 object-contain"
-          />
+          <a href="#home" aria-label="Voltar ao início">
+            <img
+              src="/multcar-logo.png"
+              alt="Logo da Mult Car"
+              className="max-h-40 object-contain"
+            />
+          </a>
         </div>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
@@ -35,11 +37,18 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-          <button className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition-all">
+          {/* Botão "Fale Conosco" */}
+          <a
+            href="https://wa.me/5544984470051?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20seus%20serviços."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition-all"
+            aria-label="Fale Conosco pelo WhatsApp"
+          >
             Fale Conosco
-          </button>
+          </a>
         </div>
-        
+
         {/* Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
@@ -51,7 +60,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -72,9 +81,16 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <button className="bg-orange-500 w-full text-white py-2 mt-2 rounded-md hover:bg-orange-600 transition-all">
+              {/* Botão "Fale Conosco" para Mobile */}
+              <a
+                href="https://wa.me/5544984470051?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20mais%20informações%20sobre%20seus%20serviços."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-orange-500 w-full text-white py-2 mt-2 rounded-md hover:bg-orange-600 transition-all"
+                aria-label="Fale Conosco pelo WhatsApp"
+              >
                 Fale Conosco
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

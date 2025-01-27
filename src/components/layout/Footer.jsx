@@ -1,5 +1,5 @@
-import React from 'react'
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import React from 'react';
+import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -10,7 +10,10 @@ const Footer = () => {
           <h3 className="text-2xl font-bold mb-4">Mult Car</h3>
           <p className="text-gray-400">
             Especialistas em funilaria e pintura, transformando seu veículo com 
-            qualidade e precisão em Materlinho de Ouro.
+            qualidade e precisão em Umuarama/PR.
+          </p>
+          <p className="mt-4 text-gray-400">
+            Nosso compromisso é entregar resultados excepcionais, com foco na sua satisfação.
           </p>
         </div>
 
@@ -29,25 +32,34 @@ const Footer = () => {
         <div>
           <h4 className="text-xl font-semibold mb-4">Contato</h4>
           <div className="space-y-2 text-gray-400">
-            <p>Tel: (11) 9999-9999</p>
-            <p>Email: contato@multcar.com.br</p>
-            
+            <p>Tel: (44) 98447-0051</p>
+            <p>Email: contato@multcarpinturas.com.br</p>
+            <p>Endereço: Avenida Alexandre ceranto, 2368, Jardim Nova América, Umuarama/PR</p>
             <div className="flex space-x-4 mt-4">
-              <a 
-                href="https://facebook.com/multcar" 
+              <a
+                href="https://www.facebook.com/www.multicar.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-2xl hover:text-blue-500 transition-colors"
+                aria-label="Facebook"
               >
                 <FaFacebook />
               </a>
-              <a 
-                href="https://instagram.com/multcar" 
+              <a
+                href="https://instagram.com/multcar"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-2xl hover:text-pink-500 transition-colors"
+                aria-label="Instagram"
               >
                 <FaInstagram />
               </a>
-              <a 
-                href="https://wa.me/5511999999999" 
+              <a
+                href="https://wa.me/5544984470051"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-2xl hover:text-green-500 transition-colors"
+                aria-label="WhatsApp"
               >
                 <FaWhatsapp />
               </a>
@@ -61,9 +73,20 @@ const Footer = () => {
         <p className="text-gray-500">
           © {new Date().getFullYear()} Mult Car. Todos os direitos reservados.
         </p>
+        <p className="text-gray-500 mt-2">
+          Desenvolvido por{' '}
+          <a
+            href="https://gpxwebsolutions.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            GPX WebSolutions
+          </a>.
+        </p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -10,15 +10,16 @@ import WhatsappButton from './components/layout/WhatsappButton'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import Gallery from './components/sections/Gallery'
+import { seoConfig } from './utils/seo' // Importando o seoConfig
 
 function App() {
   return (
     <div className="bg-gray-50 min-h-screen">
       <Helmet>
-        <title>Mult Car - Funilaria e Pintura em Materlinho de Ouro</title>
+        <title>{seoConfig.title}</title>
         <meta 
           name="description" 
-          content="Mult Car: Especialista em funilaria e pintura em Materlinho de Ouro. Serviços de alta qualidade para seu veículo."
+          content={seoConfig.description} 
         />
         <link rel="canonical" href="https://www.multcar.com.br" />
         <meta name="robots" content="index, follow" />
