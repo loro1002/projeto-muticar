@@ -22,11 +22,11 @@ const Gallery = () => {
       color: 'green',
       images: ['/gallery-polish-1.jpg', '/gallery-polish-2.jpg', '/gallery-polish-3.jpg', '/gallery-polish-4.jpg']
     },
-    {
-      name: 'Personalização',
-      color: 'purple',
-      images: ['/gallery-custom-1.jpg', '/gallery-custom-2.jpg', '/gallery-custom-3.jpg', '/gallery-custom-4.jpg']
-    }
+    // {
+    //   name: 'Personalização',
+    //   color: 'purple',
+    //   images: ['/gallery-custom-1.jpg', '/gallery-custom-2.jpg', '/gallery-custom-3.jpg', '/gallery-custom-4.jpg']
+    // }
   ];
 
   const openImageModal = (image) => {
@@ -38,7 +38,7 @@ const Gallery = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-gray-50 py-16" >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800">

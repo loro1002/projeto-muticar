@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom'; // Importe o useLocation
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation(); // Usando useLocation para pegar a URL atual
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/' },
     { name: 'Serviços', href: '#services' },
-    { name: 'Galeria', href: '#gallery' },
+    { name: 'Galeria', href: '#galeria' },
+    { name: 'Quem Somos', href: '/quem-somos' },
     { name: 'Contato', href: '#contact' },
   ];
+
+  // Condicional para exibir somente "Home" se a página atual for "Quem Somos"
+  const filteredNavItems = location.pathname === '/quem-somos'
+    ? navItems.filter(item => item.name === 'Home') // Exibe apenas "Home"
+    : navItems; // Exibe todos os itens
 
   return (
     <nav className="bg-black text-white shadow-lg sticky top-0 z-50 h-20">
@@ -28,7 +36,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          {navItems.map((item) => (
+          {filteredNavItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
@@ -71,7 +79,7 @@ const Navbar = () => {
             className="md:hidden bg-gray-900 text-white"
           >
             <div className="px-4 pt-2 pb-4 container max-w-6xl mx-auto">
-              {navItems.map((item) => (
+              {filteredNavItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
