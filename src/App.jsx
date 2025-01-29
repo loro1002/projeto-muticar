@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Usando Routes ao invés de Switch
 import Header from './components/layout/Header';
 import Navbar from './components/layout/Navbar';
+
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
 import BeforeAfter from './components/sections/BeforeAfter';
